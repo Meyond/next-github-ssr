@@ -1,4 +1,3 @@
-import '../test.css'
 import { Button } from 'antd'
 
 const Home = () => (
