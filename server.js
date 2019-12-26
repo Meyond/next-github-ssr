@@ -4,14 +4,15 @@ const Next = require('next')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = Next({ dev })
-const handle = app.getRequestHandler() // 用它处理http请求
+const handle = app.getRequestHandler() // 用next的handler处理http请求
 
 // app.prepare().then(() => {
   const server = new Koa()
   const router = new Router()
 
   router.get('/', (ctx, next) => {
-    ctx.body = 'default nothing'
+    ctx.body = { success: true }
+    ctx.set('Content-Type', 'application/json')
   })
 
   router.get('/test/:id', (ctx, next) => {
