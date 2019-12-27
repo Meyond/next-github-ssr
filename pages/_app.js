@@ -1,5 +1,6 @@
 // 覆盖next默认app组件
 import App, { Container } from 'next/app'
+import Layout from '../components/Layout'
 import '../test.css'
 
 /**
@@ -12,7 +13,7 @@ import '../test.css'
 
 class MyApp extends App {
   static async getInitialProps({ Component }) {
-    let pageProps
+    let pageProps = {}
     // 判断是否执行子页面的getInitialProps
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps()
@@ -28,6 +29,7 @@ class MyApp extends App {
 
     return (
       <Container>
+        <Layout></Layout>
         <Component {...pageProps} />
       </Container>
     )

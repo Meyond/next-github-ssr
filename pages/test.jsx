@@ -2,9 +2,7 @@ import Router, { withRouter } from 'next/router'
 
 const Test = ({ router, name }) => {
   return (
-    <>
-      <h2>test:{router.query.id}-{name}</h2>
-    </>
+    <h2>test:{router.query.id}-{name}</h2>
   )
 }
 
