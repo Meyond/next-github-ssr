@@ -1,14 +1,13 @@
-import { Button } from 'antd'
-import Link from 'next/link'
-import Router from 'next/router'
+import { Button } from "antd";
+import Link from "next/link";
+import Router from "next/router";
 
 const Home = () => {
-
   function gotoTest() {
     Router.push({
-      pathname: '/test',
+      pathname: "/test",
       query: { id: 2 }
-    })
+    }, '/test/2') // 路由映射
   }
 
   return (
@@ -16,8 +15,12 @@ const Home = () => {
       <div className="hero">
         <h1 className="title">Welcome to Next.js!</h1>
       </div>
-      <Link href="/404"><Button type="primary">404</Button></Link>
-      <Button onClick={ gotoTest }>Test</Button>
+
+      <Link href="/404" as="/404/路由映射">
+        <Button type="primary">404</Button>
+      </Link>
+      <Button onClick={gotoTest}>Test</Button>
+
       <style jsx>{`
         .hero {
           width: 100%;
@@ -25,7 +28,7 @@ const Home = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
