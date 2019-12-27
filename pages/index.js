@@ -1,7 +1,6 @@
 
 const Home = () => {
 
-
   return (
     <div className="box">
       <div className="hero">

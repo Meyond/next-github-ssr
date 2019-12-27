@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "serve": "nodemon server"
+    "serve": "node server"
   },
   "dependencies": {
     "@zeit/next-bundle-analyzer": "^0.1.2",

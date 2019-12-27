@@ -12,11 +12,11 @@ import '../test.css'
  */
 
 class MyApp extends App {
-  static async getInitialProps({ Component }) {
+  static async getInitialProps({ Component, ctx }) {
     let pageProps = {}
     // 判断是否执行子页面的getInitialProps
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps()
+      pageProps = await Component.getInitialProps(ctx)
     }
     return {
       pageProps
