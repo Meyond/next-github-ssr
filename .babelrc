@@ -1,11 +1,18 @@
 {
-  "presets": ["next/babel"], // 导入默认babel配置
+  // 导入默认babel配置
+  "presets": ["next/babel"],
   "plugins": [
     [
+      // 全局引入antd
       "import", {
         "libraryName": "antd",
         "style": "css"
       }
+    ],
+    [
+      // 支持css文件
+      "styled-components",
+      { "ssr": true }
     ]
   ]
 
