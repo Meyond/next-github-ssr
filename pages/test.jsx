@@ -2,13 +2,16 @@ import Router, { withRouter } from 'next/router'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import styled from 'styled-components'
+import getConfig from 'next/config'
 
 // 异步加载组件(渲染到才会加载)
 const Comp = dynamic(import('../components/Comp'))
 
 const Title = styled.h2`
   font-size: 40px;
-`;
+  `;
+
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 const color = '#0C7D9D'
 
 const Test = ({ router, name, time }) => {
