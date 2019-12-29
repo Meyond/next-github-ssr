@@ -1,12 +1,27 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer } from 'react'
+
+// 根据action类型对state进行更新
+function countReducer(state, action) {
+  switch (action.type) {
+    case 'add':
+      // 如果是对象，需要返使用Object.assign,才能在子组件监听到数据变化
+      return state + 1
+    case 'minus':
+      return state - 1
+    default:
+      return state
+  }
+}
 
 function MyCounter() {
-  const [count, setCount] = useState(0)
+  const [count, dispatchCount] = useReducer(countReducer, 0)
 
-  // 初始化、卸载时调用
   useEffect(() => {
+    // 初始化、卸载时调用
     const interval = setInterval(() => {
-      setCount(count => count + 1 )
+      // dispatchCount({ type: 'add' })
+      // or
+      dispatchCount({ type: 'minus' })
     }, 1000)
 
     return () => clearInterval(interval) // 清除定时器
