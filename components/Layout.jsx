@@ -14,11 +14,16 @@ export default ({ children }) => {
   return(
     <>
       <header>
-      <Link href="/404" as="/404/路由映射">
-        <Button type="primary">404</Button>
-      </Link>
-      <Button onClick={gotoTest}>Test</Button>
-    </header>
+        <Link href="/">
+          <Button type="danger">主页</Button>
+        </Link>
+        <Link href="/404" as="/404/路由映射">
+          <Button type="primary">404</Button>
+        </Link>
+        <Button onClick={gotoTest}>Test</Button>
+        <Button onClick={() => Router.push('/counter')}>计数器</Button>
+        <Button onClick={() => Router.push('/counter-hooks')} >Hooks</Button>
+      </header>
     </>
   )
 }
