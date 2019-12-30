@@ -43,11 +43,20 @@ function MyCounter() {
   const handleButtonClick = useCallback(
     () => dispatchCount({ type: "add" }),
     []
-  );
+    );
 
-  useEffect(() => {
-    return () => {};
-  }, []);
+  // 闭包陷阱优化
+  const countRef = useRef();
+  countRef.current = count
+
+  const handleAlertButtonClick = function() {
+    setTimeout(() => {
+      // 闭包陷阱：alert弹出来的值是2s之前的count值
+      // class组件的count一般是挂在this上面
+      // alert(count);
+      alert(countRef.current)
+    }, 2000);
+  };
 
   return (
     <div className="optimize">
@@ -58,6 +67,7 @@ function MyCounter() {
         type="text"
       />
       <Child config={config} onButtonClick={handleButtonClick} />
+      <Button onClick={handleAlertButtonClick}>Alert</Button>
       <style jsx>{`
         .optimize {
           width: 300px;
@@ -70,9 +80,11 @@ function MyCounter() {
 const Child = memo(function Child({ onButtonClick, config }) {
   console.log("child render");
   return (
-    <Button onClick={onButtonClick} style={{ color: config.color }}>
-      {config.text}
-    </Button>
+    <>
+      <Button onClick={onButtonClick} style={{ color: config.color }}>
+        {config.text}
+      </Button>
+    </>
   );
 });
 
