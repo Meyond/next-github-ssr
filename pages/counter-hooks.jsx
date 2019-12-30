@@ -1,5 +1,6 @@
+import { useState, useEffect, useLayoutEffect, useReducer, useContext } from "react";
 import { Button, Input } from "antd";
-import { useState, useEffect, useLayoutEffect, useReducer } from "react";
+import MyContext from '../lib/my-context'
 
 // 根据action类型对state进行更新
 function countReducer(state, action) {
@@ -17,6 +18,7 @@ function countReducer(state, action) {
 function MyCounter() {
   const [count, dispatchCount] = useReducer(countReducer, 0);
   const [name, setName] = useState("jack");
+  const context = useContext(MyContext)
 
   // useLayoutEffect会在DOM内容更新之前执行
   // useEffect会在DOM更新时才会执行
@@ -29,6 +31,7 @@ function MyCounter() {
     <div className="hooks">
       <Input value={name} onChange={e => setName(e.target.value)} type="text" />
       <Button onClick={() => dispatchCount({ type: "add" })} type="primary">{count}</Button>
+      <p>{context}</p>
       <style jsx>{`
         .hooks {
           width: 300px;

@@ -1,6 +1,8 @@
 // 覆盖next默认app组件
 import App, { Container } from 'next/app'
 import Layout from '../components/Layout'
+import { Button, Input } from "antd";
+import MyContext from '../lib/my-context'
 import '../test.css'
 
 /**
@@ -12,6 +14,11 @@ import '../test.css'
  */
 
 class MyApp extends App {
+
+  state = {
+    context: '值'
+  }
+
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {}
     // 判断是否执行子页面的getInitialProps
@@ -29,8 +36,11 @@ class MyApp extends App {
 
     return (
       <Container>
-        <Layout></Layout>
-        <Component {...pageProps} />
+        <Layout/>
+        <MyContext.Provider value={this.state.context}>
+          <Component {...pageProps} />
+          <Button onClick={() => this.setState({ context: `${this.state.context}11` })}>update context</Button>
+        </MyContext.Provider>
       </Container>
     )
   }
