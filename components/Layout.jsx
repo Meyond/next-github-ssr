@@ -23,6 +23,7 @@ export default ({ children }) => {
         <Button onClick={gotoTest}>Test</Button>
         <Button onClick={() => Router.push('/counter')}>计数器</Button>
         <Button onClick={() => Router.push('/counter-hooks')} >Hooks</Button>
+        <Button onClick={() => Router.push('/optimize-hooks')} >Optimize</Button>
       </header>
     </>
   )
