@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useReducer, useContext } from "react";
+import { useState, useEffect, useLayoutEffect, useReducer, useContext, useRef } from "react";
 import { Button, Input } from "antd";
 import MyContext from '../lib/my-context'
 
@@ -19,17 +19,19 @@ function MyCounter() {
   const [count, dispatchCount] = useReducer(countReducer, 0);
   const [name, setName] = useState("jack");
   const context = useContext(MyContext)
+  const inputRef = useRef()
 
   // useLayoutEffect会在DOM内容更新之前执行
   // useEffect会在DOM更新时才会执行
   useEffect(() => {
     console.log("effect invoked"); // 组件初始化
+    console.log(inputRef.current) // useRef
     return () => console.log("effect deteched"); // 组件卸载
   }, [name]); // 数组内传入的值变化时，会执行useEffect
 
   return (
     <div className="hooks">
-      <Input value={name} onChange={e => setName(e.target.value)} type="text" />
+      <Input ref={inputRef} value={name} onChange={e => setName(e.target.value)} type="text" />
       <Button onClick={() => dispatchCount({ type: "add" })} type="primary">{count}</Button>
       <p>{context}</p>
       <style jsx>{`

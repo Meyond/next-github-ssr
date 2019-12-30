@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 
 export default class MyCounter extends Component {
+  constructor() {
+    super()
+    this.ref = React.createRef()
+  }
+
   state = {
     count: 0
   }
 
   componentDidMount() {
+    console.log(this.ref.current)
+
     this.interval = setInterval(() => {
       this.setState({ count: this.state.count + 1 })
     }, 1000)
@@ -19,7 +26,7 @@ export default class MyCounter extends Component {
 
   render() {
     return(
-      <span>计数器：{ this.state.count }</span>
+      <span ref={this.ref}>计数器：{ this.state.count }</span>
     )
   }
 }
