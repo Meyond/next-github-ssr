@@ -32,6 +32,7 @@ function MyCounter() {
    * 2.使用useMemo声明config,通过传入count控制config是否要重新声明
    * 3.只有count变化才会重新声明config,Child组件才会重新渲染
    * 4.同理对handleButtonClick使用useCallback
+   * 5.useMemo用于对象优化，useCallback用于函数优化
    */
   const config = useMemo(() => {
     return {
