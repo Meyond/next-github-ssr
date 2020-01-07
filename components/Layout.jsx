@@ -3,15 +3,17 @@ import Link from "next/link";
 import Router from "next/router";
 
 export default ({ children }) => {
-
   function gotoTest() {
-    Router.push({
-      pathname: "/test",
-      query: { id: 2 }
-    }, '/test/2') // 路由映射
+    Router.push(
+      {
+        pathname: "/test",
+        query: { id: 2 }
+      },
+      "/test/2"
+    ); // 路由映射
   }
 
-  return(
+  return (
     <>
       <header>
         <Link href="/">
@@ -21,10 +23,10 @@ export default ({ children }) => {
           <Button type="primary">404</Button>
         </Link>
         <Button onClick={gotoTest}>Test</Button>
-        <Button onClick={() => Router.push('/counter')}>计数器</Button>
-        <Button onClick={() => Router.push('/counter-hooks')} >Hooks</Button>
-        <Button onClick={() => Router.push('/optimize-hooks')} >Optimize</Button>
+        <Button onClick={() => Router.push("/counter")}>计数器</Button>
+        <Button onClick={() => Router.push("/counter-hooks")}>Hooks</Button>
+        <Button onClick={() => Router.push("/optimize-hooks")}>Optimize</Button>
       </header>
     </>
-  )
-}
+  );
+};

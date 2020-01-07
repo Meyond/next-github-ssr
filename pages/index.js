@@ -1,10 +1,9 @@
-import Link from 'next/link'
-import Router from 'next/router'
-import { Button } from 'antd'
-import store from '../store/store'
+import Link from "next/link";
+import Router from "next/router";
+import { Button } from "antd";
+import store from "../store/store";
 
 const Home = () => {
-
   return (
     <div className="box">
       <div className="hero">

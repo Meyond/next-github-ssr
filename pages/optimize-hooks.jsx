@@ -44,18 +44,18 @@ function MyCounter() {
   const handleButtonClick = useCallback(
     () => dispatchCount({ type: "add" }),
     []
-    );
+  );
 
   // 闭包陷阱优化
   const countRef = useRef();
-  countRef.current = count
+  countRef.current = count;
 
   const handleAlertButtonClick = function() {
     setTimeout(() => {
       // 闭包陷阱：alert弹出来的值是2s之前的count值
       // class组件的count一般是挂在this上面
       // alert(count);
-      alert(countRef.current)
+      alert(countRef.current);
     }, 2000);
   };
 
