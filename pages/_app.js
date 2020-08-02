@@ -5,6 +5,10 @@ import { Button, Input } from "antd";
 import MyContext from "../lib/my-context";
 import "../test.css";
 
+// 使用react-redux生成状态容器
+import store from "../store/store";
+import { Provider } from "react-redux";
+
 /**
  * app组件的作用
  * 1.固定Layout
@@ -13,7 +17,7 @@ import "../test.css";
  * 4.自定义错误处理
  */
 
-class MyApp extends App {
+export default class MyApp extends App {
   state = {
     context: "值"
   };
@@ -36,19 +40,19 @@ class MyApp extends App {
     return (
       <Container>
         <Layout />
-        <MyContext.Provider value={this.state.context}>
-          <Component {...pageProps} />
-          <Button
-            onClick={() =>
-              this.setState({ context: `${this.state.context}11` })
-            }
-          >
-            update context
-          </Button>
-        </MyContext.Provider>
+        <Provider store={store}>
+          <MyContext.Provider value={this.state.context}>
+            <Component {...pageProps} />
+            <Button
+              onClick={() =>
+                this.setState({ context: `${this.state.context}11` })
+              }
+            >
+              update context
+            </Button>
+          </MyContext.Provider>
+        </Provider>
       </Container>
     );
   }
 }
-
-export default MyApp;
