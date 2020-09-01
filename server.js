@@ -3,6 +3,7 @@ const Router = require("koa-router");
 const Next = require("next");
 
 const dev = process.env.NODE_ENV !== "production";
+const servePort = 3000;
 const app = Next({ dev });
 const handle = app.getRequestHandler(); // 用next的handler处理http请求
 
@@ -12,11 +13,11 @@ app.prepare().then(() => {
 
   // next/router的路由映射没有定义实际页面会404
   // 因此使用koa-router实现真正的映射
-  router.get("/test/:id", async ctx => {
+  router.get("/test/:id", async (ctx) => {
     const { id } = ctx.params;
     await handle(ctx.req, ctx.res, {
       pathname: "/test",
-      query: { id }
+      query: { id },
     });
     ctx.respond = false;
   });
@@ -28,7 +29,7 @@ app.prepare().then(() => {
     ctx.respond = false;
   });
 
-  server.listen(3000, () => {
-    console.log("Koa listening on 3000 !");
+  server.listen(servePort, () => {
+    console.log(`Koa listening on ${servePort}!`);
   });
 });
