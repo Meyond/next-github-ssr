@@ -1,5 +1,5 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
 /**
  * Document只有在服务端渲染才会被执行
@@ -14,8 +14,8 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
-          enhanceComponent: Component => withLog(Component)
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+          enhanceComponent: (Component) => withLog(Component),
         });
 
       const props = await Document.getInitialProps(ctx);
@@ -27,7 +27,7 @@ export default class MyDocument extends Document {
             {props.styles}
             {sheet.getStyleElement()}
           </>
-        )
+        ),
       };
     } catch (error) {
       console.log(error);
@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
 
 // withLog HOC
 function withLog(Comp) {
-  return props => {
+  return (props) => {
     console.log(props);
     return <Comp {...props} />;
   };

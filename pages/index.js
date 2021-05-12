@@ -1,8 +1,8 @@
-import Link from "next/link";
-import Router from "next/router";
-import { Button } from "antd";
-import store from "../store/store";
-import { connect } from "react-redux";
+import Link from 'next/link';
+import Router from 'next/router';
+import { Button } from 'antd';
+import store from '../store/store';
+import { connect } from 'react-redux';
 
 const Index = ({ count }) => {
   return (
@@ -22,6 +22,6 @@ const Index = ({ count }) => {
 
 export default connect(function mapStateToProps(state) {
   return {
-    count: state.count.count
+    count: state.count.count,
   };
 })(Index);

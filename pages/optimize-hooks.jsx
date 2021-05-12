@@ -5,17 +5,17 @@ import {
   useRef,
   memo,
   useMemo,
-  useCallback
-} from "react";
-import { Button, Input } from "antd";
+  useCallback,
+} from 'react';
+import { Button, Input } from 'antd';
 
 // 根据action类型对state进行更新
 function countReducer(state, action) {
   switch (action.type) {
-    case "add":
+    case 'add':
       // 如果是对象，需要返使用Object.assign,才能在子组件监听到数据变化
       return state + 1;
-    case "minus":
+    case 'minus':
       return state - 1;
     default:
       return state;
@@ -25,7 +25,7 @@ function countReducer(state, action) {
 function MyCounter() {
   const inputRef = useRef();
   const [count, dispatchCount] = useReducer(countReducer, 0);
-  const [name, setName] = useState("jack");
+  const [name, setName] = useState('jack');
 
   /**
    * 1.name更新，导致MyCounter函数组件重新渲染，config也会被重新声明
@@ -37,20 +37,17 @@ function MyCounter() {
   const config = useMemo(() => {
     return {
       text: `count is ${count}`,
-      color: count > 3 ? "red" : "green"
+      color: count > 3 ? 'red' : 'green',
     };
   }, [count]);
 
-  const handleButtonClick = useCallback(
-    () => dispatchCount({ type: "add" }),
-    []
-  );
+  const handleButtonClick = useCallback(() => dispatchCount({ type: 'add' }), []);
 
   // 闭包陷阱优化
   const countRef = useRef();
   countRef.current = count;
 
-  const handleAlertButtonClick = function() {
+  const handleAlertButtonClick = function () {
     setTimeout(() => {
       // 闭包陷阱：alert弹出来的值是2s之前的count值
       // class组件的count一般是挂在this上面
@@ -64,7 +61,7 @@ function MyCounter() {
       <Input
         ref={inputRef}
         value={name}
-        onChange={e => setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         type="text"
       />
       <Child config={config} onButtonClick={handleButtonClick} />
@@ -79,7 +76,7 @@ function MyCounter() {
 }
 
 const Child = memo(function Child({ onButtonClick, config }) {
-  console.log("child render");
+  console.log('child render');
   return (
     <>
       <Button onClick={onButtonClick} style={{ color: config.color }}>

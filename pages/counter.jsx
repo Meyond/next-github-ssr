@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class MyCounter extends Component {
   constructor() {
@@ -7,7 +7,7 @@ export default class MyCounter extends Component {
   }
 
   state = {
-    count: 0
+    count: 0,
   };
 
   componentDidMount() {

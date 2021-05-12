@@ -1,13 +1,13 @@
 // 覆盖next默认app组件
-import App, { Container } from "next/app";
-import Layout from "../components/Layout";
-import { Button, Input } from "antd";
-import MyContext from "../lib/my-context";
-import "../test.css";
+import App, { Container } from 'next/app';
+import Layout from '../components/Layout';
+import { Button, Input } from 'antd';
+import MyContext from '../lib/my-context';
+import '../test.css';
 
 // 使用react-redux生成状态容器
-import store from "../store/store";
-import { Provider } from "react-redux";
+import store from '../store/store';
+import { Provider } from 'react-redux';
 
 /**
  * app组件的作用
@@ -19,7 +19,7 @@ import { Provider } from "react-redux";
 
 export default class MyApp extends App {
   state = {
-    context: "值"
+    context: '值',
   };
 
   static async getInitialProps({ Component, ctx }) {
@@ -29,7 +29,7 @@ export default class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx);
     }
     return {
-      pageProps
+      pageProps,
     };
   }
 
@@ -43,11 +43,7 @@ export default class MyApp extends App {
         <Provider store={store}>
           <MyContext.Provider value={this.state.context}>
             <Component {...pageProps} />
-            <Button
-              onClick={() =>
-                this.setState({ context: `${this.state.context}11` })
-              }
-            >
+            <Button onClick={() => this.setState({ context: `${this.state.context}11` })}>
               update context
             </Button>
           </MyContext.Provider>
