@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "serve": "nodemon server",
-    "lint": "prettier --write --loglevel warn \"pages/**/*.{js,json,jsx,tsx,css,less,scss,html,md}\""
+    "lint": "prettier --write --loglevel warn \"pages/**/*.{js,ts,json,jsx,tsx,css,less,scss,html,md}\""
   },
   "dependencies": {
     "@zeit/next-bundle-analyzer": "^0.1.2",
