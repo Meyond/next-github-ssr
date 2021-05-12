@@ -15,7 +15,7 @@
     "ahooks": "^2.5.0",
     "antd": "^4.6.2",
     "atob": "^2.1.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.11.0",
     "babel-plugin-styled-components": "^1.10.0",
     "cross-env": "^5.2.0",
